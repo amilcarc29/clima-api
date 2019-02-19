@@ -12,16 +12,16 @@
 
 * Obtener todas las consultas previas de clima:
 
-   http://...:9000/api/
+   http://...:8080/api/
 
 * Nueva consulta:
 
-   http://...:9000/api/clima?dias={dias} => http://...:9000/api/clima?dias=270
+   http://...:8080/api/clima?dias={dias} => http://...:8080/api/clima?dias=270
    
 * Ver los planetas cargados en la base de datos:
    
-   http://...:9000/api/planetas/
+   http://...:8080/api/planetas/
 
 * Ver detalle de un planeta específico:
 
-   http://...:9000/api/planetas/{nombre} => http://...:9000/api/planetas/Ferengi
+   http://...:8080/api/planetas/{nombre} => http://...:8080/api/planetas/Ferengi
