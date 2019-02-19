@@ -12,8 +12,8 @@
 
 * Obtener todas las consultas previas:
 
-http://...:9000/api/
+   http://...:9000/api/
 
 * Nueva consulta:
 
-http://...:9000/api/clima?dias=270
+   http://...:9000/api/clima?dias=270
