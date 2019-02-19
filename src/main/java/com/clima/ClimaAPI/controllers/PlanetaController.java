@@ -17,7 +17,7 @@ import com.clima.ClimaAPI.models.Planeta;
 import com.clima.ClimaAPI.repositories.PlanetaRepository;
 
 @RestController
-@RequestMapping("/api/planeta")
+@RequestMapping("/api/planetas")
 public class PlanetaController {
 	
 	@Autowired
