@@ -9,19 +9,20 @@
 * Spring Boot.
 * JSON: _org.json_.
 * Math: _Apache Commons_.
+* APP Engine.
 
 * Obtener todas las consultas previas de clima:
 
-   http://...:9000/api/
+   https://climaapi.appspot.com/api/
 
 * Nueva consulta:
 
-   http://...:9000/api/clima?dias={dias} => http://...:9000/api/clima?dias=270
+   https://climaapi.appspot.com/api/clima?dias={dias} => https://climaapi.appspot.com/api/clima?dias=270
    
 * Ver los planetas cargados en la base de datos:
    
-   http://...:9000/api/planetas/
+   https://climaapi.appspot.com/api/planetas/
 
 * Ver detalle de un planeta específico:
 
-   http://...:9000/api/planetas/{nombre} => http://...:9000/api/planetas/Ferengi
+   https://climaapi.appspot.com/api/planetas/{nombre} => https://climaapi.appspot.com/api/planetas/Ferengi
