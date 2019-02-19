@@ -5,10 +5,10 @@
 * Java 8.
 * Jetty.
 * Maven.
-* MongoDB _mLab_
+* MongoDB: _mLab_.
 * Spring Boot.
-* JSON _org.json_
-* Math _Apache Commons_
+* JSON: _org.json_.
+* Math: _Apache Commons_.
 
 * Obtener todas las consultas previas de clima:
 
