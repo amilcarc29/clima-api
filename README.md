@@ -24,4 +24,4 @@
 
 * Ver detalle de un planeta específico:
 
-   http://...:9000/api/planetas/{nombre} => http://...:9000/api/planeta/Ferengi
+   http://...:9000/api/planetas/{nombre} => http://...:9000/api/planetas/Ferengi
