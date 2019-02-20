@@ -7,8 +7,6 @@ import org.bson.types.ObjectId;
 import com.clima.ClimaAPI.models.Clima;
 import com.clima.ClimaAPI.models.Planeta;
 import com.clima.ClimaAPI.repositories.ClimaRepository;
-import com.clima.Utils.Punto;
-import com.clima.Utils.Recta;
 
 public class PronosticoClima {
 
