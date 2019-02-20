@@ -48,8 +48,10 @@ public class PronosticoClima {
 				return "Condición óptima";
 			case SOL_PLANETAS_ALINEADOS:
 				return "Sequía";
-			default:
+			case NO_ALINEADOS:
 				return "Lluvioso";
+			default:
+				throw new Exception("Clima no encontrado");
 		}
 	}
 
