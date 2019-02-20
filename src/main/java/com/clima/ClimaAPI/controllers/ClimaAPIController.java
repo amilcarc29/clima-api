@@ -30,7 +30,12 @@ public class ClimaAPIController {
 	private static final String CONDICION_OPTIMA = "Condición óptima";
 
 	@GetMapping(value = "/")
-	public String getClimas() throws Exception {
+	public String home() {
+		return "API para generar clima.";
+	}
+
+	@GetMapping(value = "/pronostico")
+	public String getClimas() {
 		JSONObject pronostico = new JSONObject();
 		pronostico.put(SEQUIA, repository.findByPronostico(SEQUIA).size());
 		pronostico.put(LLUVIOSO, repository.findByPronostico(LLUVIOSO).size());
@@ -40,7 +45,7 @@ public class ClimaAPIController {
 		return pronosticoAnios.toString();
 	}
 
-	private void generarPronosticoExtendido(int aniosEnDias) throws Exception {
+	private JSONObject generarPronosticoExtendido(int aniosEnDias) throws Exception {
 		List<JSONObject> pronosticoExtendido = new ArrayList<>();
 		List<Planeta> planetas = planetaRepository.findAll();
 		JSONObject pronostico = new JSONObject();
@@ -53,6 +58,7 @@ public class ClimaAPIController {
 		pronostico.put(CONDICION_OPTIMA, filtrarPronosticos(pronosticoExtendido, CONDICION_OPTIMA).size());
 		JSONObject pronosticoAnios = new JSONObject();
 		pronosticoAnios.put(String.valueOf(aniosEnDias) + " años", pronostico);
+		return pronosticoAnios;
 	}
 
 	private List<JSONObject> filtrarPronosticos(List<JSONObject> pronosticoExtendido, String climaString) {
