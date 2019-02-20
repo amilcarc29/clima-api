@@ -13,9 +13,13 @@
 
 ----
 
-* Obtener todas las consultas previas de clima:
+* Punto de entrada de la API:
 
    https://climaapi.appspot.com/api/
+
+* Obtener el pronóstico del clima para 10 años:
+
+   https://climaapi.appspot.com/api/pronostico
 
 * Nueva consulta:
 
