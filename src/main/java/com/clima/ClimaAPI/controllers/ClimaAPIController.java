@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.clima.ClimaAPI.PronosticoClima;
 import com.clima.ClimaAPI.models.Planeta;
-import com.clima.ClimaAPI.repositories.ClimaAPIRepository;
+import com.clima.ClimaAPI.repositories.ClimaRepository;
 import com.clima.ClimaAPI.repositories.PlanetaRepository;
 
 @RestController
@@ -21,7 +21,7 @@ import com.clima.ClimaAPI.repositories.PlanetaRepository;
 public class ClimaAPIController {
 
 	@Autowired
-	private ClimaAPIRepository repository;
+	private ClimaRepository repository;
 	@Autowired
 	private PlanetaRepository planetaRepository;
 

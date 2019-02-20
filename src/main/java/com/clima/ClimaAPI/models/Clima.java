@@ -5,7 +5,7 @@ import org.bson.types.ObjectId;
 import org.json.JSONObject;
 import org.springframework.data.annotation.Id;
 
-public class ClimaAPI {
+public class Clima {
 
 	@Id
 	public ObjectId _id;
@@ -13,15 +13,15 @@ public class ClimaAPI {
 	public int dias;
 	public String pronostico;
 	 
-	public ClimaAPI() {}
+	public Clima() {}
 
-	public ClimaAPI(ObjectId _id, int dias, String pronostico) {
+	public Clima(ObjectId _id, int dias, String pronostico) {
 		this._id = _id;
 		this.dias = dias;
 		this.pronostico = pronostico;
 	}
 	
-	public ClimaAPI(int dias, String pronostico) {
+	public Clima(int dias, String pronostico) {
 		this.dias = dias;
 		this.pronostico = pronostico;
 	}

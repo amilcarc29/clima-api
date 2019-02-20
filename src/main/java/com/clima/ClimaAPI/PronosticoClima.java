@@ -4,26 +4,26 @@ import java.util.List;
 
 import org.bson.types.ObjectId;
 
-import com.clima.ClimaAPI.models.ClimaAPI;
+import com.clima.ClimaAPI.models.Clima;
 import com.clima.ClimaAPI.models.Planeta;
-import com.clima.ClimaAPI.repositories.ClimaAPIRepository;
+import com.clima.ClimaAPI.repositories.ClimaRepository;
 import com.clima.Utils.Punto;
 import com.clima.Utils.Recta;
 
 public class PronosticoClima {
 
-	private ClimaAPIRepository climaRepository = null;
+	private ClimaRepository climaRepository = null;
 	private static PronosticoClima instancia = null;
 	private static final String SENTIDO_HORARIO = "horario";
 	private static final String PLANETAS_ALINEADOS = "planetas-alineados";
 	private static final String SOL_PLANETAS_ALINEADOS = "sol-planetas-alineados";
 	private static final String NO_ALINEADOS = "no-alineados";
 
-	public PronosticoClima(ClimaAPIRepository climaRepository) {
+	public PronosticoClima(ClimaRepository climaRepository) {
 		this.climaRepository = climaRepository;
 	}
 
-	public static PronosticoClima getInstancia(ClimaAPIRepository climaRepository) {
+	public static PronosticoClima getInstancia(ClimaRepository climaRepository) {
 		if (instancia == null) {
 			instancia = new PronosticoClima(climaRepository);
 		}
@@ -31,10 +31,10 @@ public class PronosticoClima {
 	}
 
 	public String pronosticoClima(int dias, List<Planeta> planetas) throws Exception {
-		ClimaAPI climaModel = climaRepository.findByDias(dias);
+		Clima climaModel = climaRepository.findByDias(dias);
 		if (climaModel == null) {
 			String clima = calcularPronostico(dias, planetas);
-			climaModel = new ClimaAPI(dias, clima);
+			climaModel = new Clima(dias, clima);
 			climaModel.set_id(ObjectId.get());
 			climaRepository.save(climaModel);
 		}
