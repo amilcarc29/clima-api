@@ -1,20 +1,17 @@
 package com.clima.ClimaAPI.controllers;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
-import javax.validation.Valid;
-
-import org.bson.types.ObjectId;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.clima.ClimaAPI.PronosticoClima;
-import com.clima.ClimaAPI.models.ClimaAPI;
 import com.clima.ClimaAPI.models.Planeta;
 import com.clima.ClimaAPI.repositories.ClimaAPIRepository;
 import com.clima.ClimaAPI.repositories.PlanetaRepository;
@@ -28,16 +25,38 @@ public class ClimaAPIController {
 	@Autowired
 	private PlanetaRepository planetaRepository;
 
+	private static final String SEQUIA = "Sequía";
+	private static final String LLUVIOSO = "Lluvioso";
+	private static final String CONDICION_OPTIMA = "Condición óptima";
+
 	@GetMapping(value = "/")
-	public List<ClimaAPI> getClimas() {
-	  return repository.findAll();
+	public String getClimas() throws Exception {
+		JSONObject pronostico = new JSONObject();
+		pronostico.put(SEQUIA, repository.findByPronostico(SEQUIA).size());
+		pronostico.put(LLUVIOSO, repository.findByPronostico(LLUVIOSO).size());
+		pronostico.put(CONDICION_OPTIMA, repository.findByPronostico(CONDICION_OPTIMA).size());
+		JSONObject pronosticoAnios = new JSONObject();
+		pronosticoAnios.put("10 años", pronostico);
+		return pronosticoAnios.toString();
 	}
 
-	@PostMapping(value = "/")
-	public ClimaAPI createClima(@Valid @RequestBody ClimaAPI clima) {
-	  clima.set_id(ObjectId.get());
-	  repository.save(clima);
-	  return clima;
+	private void generarPronosticoExtendido(int aniosEnDias) throws Exception {
+		List<JSONObject> pronosticoExtendido = new ArrayList<>();
+		List<Planeta> planetas = planetaRepository.findAll();
+		JSONObject pronostico = new JSONObject();
+		for (int i = 1; i <= aniosEnDias; i++) {
+			JSONObject climaObject = new JSONObject(PronosticoClima.getInstancia(repository).pronosticoClima(i, planetas));
+			pronosticoExtendido.add(climaObject);
+		}
+		pronostico.put(SEQUIA, filtrarPronosticos(pronosticoExtendido, SEQUIA).size());
+		pronostico.put(LLUVIOSO, filtrarPronosticos(pronosticoExtendido, LLUVIOSO).size());
+		pronostico.put(CONDICION_OPTIMA, filtrarPronosticos(pronosticoExtendido, CONDICION_OPTIMA).size());
+		JSONObject pronosticoAnios = new JSONObject();
+		pronosticoAnios.put(String.valueOf(aniosEnDias) + " años", pronostico);
+	}
+
+	private List<JSONObject> filtrarPronosticos(List<JSONObject> pronosticoExtendido, String climaString) {
+		return pronosticoExtendido.stream().filter(clima -> climaString.equals(clima.getString("clima"))).collect(Collectors.toList());
 	}
 
 	@GetMapping(value = "/clima")
