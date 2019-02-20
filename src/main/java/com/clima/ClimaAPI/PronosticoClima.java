@@ -57,16 +57,14 @@ public class PronosticoClima {
 		Planeta ferengi = getPlaneta("Ferengi", planetas);
 		Planeta betasoide = getPlaneta("Betasoide", planetas);
 		Planeta vulcano = getPlaneta("Vulcano", planetas);
-		int pendienteFerengi = (int) Math.tan(calcularAnguloPendiente(dias, ferengi));
+		double anguloPendienteFerengi = calcularAnguloPendiente(dias, ferengi);
+		int pendienteFerengi = (int) Math.tan(anguloPendienteFerengi);
 		int pendienteBetasoide = (int) Math.tan(calcularAnguloPendiente(dias, betasoide));
 		int pendienteVulcano = (int) Math.tan(calcularAnguloPendiente(dias, vulcano));
 		String alineados;
 		if (pendienteFerengi == pendienteBetasoide && pendienteBetasoide == pendienteVulcano) {
 			alineados = PLANETAS_ALINEADOS;
-			int b = (int) (ferengi.getDistanciaAlSol() * Math.tan(pendienteFerengi));
-			Recta rectaPlanetas = new Recta(pendienteFerengi, b);
-			// Sol está en el punto (0,0)
-			if (rectaPlanetas.rectaIncluyePunto(new Punto(0, 0))) {
+			if (solPlanetasAlineados(anguloPendienteFerengi)) {
 				alineados = SOL_PLANETAS_ALINEADOS;
 			}
 		} else {
@@ -79,6 +77,11 @@ public class PronosticoClima {
 		double angulo = planeta.getSentido().equals(SENTIDO_HORARIO) ? 360 - (dias * planeta.getVelocidadAngular())
 				: dias * planeta.getVelocidadAngular();
 		return Math.toRadians(Math.abs((angulo + 360) % 360));
+	}
+
+	private boolean solPlanetasAlineados(double angulo) {
+		angulo = Math.toDegrees(angulo);
+		return angulo == 90 || angulo == 0 || angulo == 180 || angulo == 270 || angulo == 360;
 	}
 
 	private Planeta getPlaneta(String nombrePlaneta, List<Planeta> planetas) throws Exception {
