@@ -11,6 +11,8 @@
 * Math: _Apache Commons_.
 * APP Engine.
 
+----
+
 * Obtener todas las consultas previas de clima:
 
    https://climaapi.appspot.com/api/
