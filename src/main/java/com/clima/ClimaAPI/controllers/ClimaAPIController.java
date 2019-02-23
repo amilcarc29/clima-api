@@ -62,7 +62,9 @@ public class ClimaAPIController {
 	}
 
 	private List<JSONObject> filtrarPronosticos(List<JSONObject> pronosticoExtendido, String climaString) {
-		return pronosticoExtendido.stream().filter(clima -> climaString.equals(clima.getString("clima"))).collect(Collectors.toList());
+		return pronosticoExtendido.stream()
+				.filter(clima -> climaString.equals(clima.getString("clima")))
+				.collect(Collectors.toList());
 	}
 
 	@GetMapping(value = "/clima")
