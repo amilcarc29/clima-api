@@ -19,24 +19,24 @@ import com.clima.ClimaAPI.repositories.PlanetaRepository;
 @RestController
 @RequestMapping("/api/planetas")
 public class PlanetaController {
-	
+
 	@Autowired
 	private PlanetaRepository repository;
-		
+
 	@GetMapping(value = "/")
 	public List<Planeta> getClimas() {
-	  return repository.findAll();
+		return repository.findAll();
 	}
 
 	@GetMapping(value = "/{nombre}")
 	public Planeta getPlanetaByNombre(@PathVariable("nombre") String nombre) {
-	  return repository.findByNombre(nombre);
+		return repository.findByNombre(nombre);
 	}
 
 	@PostMapping(value = "/")
 	public Planeta createPlaneta(@Valid @RequestBody Planeta planeta) {
-	  planeta.set_id(ObjectId.get());
-	  repository.save(planeta);
-	  return planeta;
+		planeta.set_id(ObjectId.get());
+		repository.save(planeta);
+		return planeta;
 	}
 }
