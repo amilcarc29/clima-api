@@ -17,7 +17,7 @@ public class PronosticoClima {
 	private static final String SOL_PLANETAS_ALINEADOS = "sol-planetas-alineados";
 	private static final String NO_ALINEADOS = "no-alineados";
 
-	public PronosticoClima(ClimaRepository climaRepository) {
+	private PronosticoClima(ClimaRepository climaRepository) {
 		this.climaRepository = climaRepository;
 	}
 
