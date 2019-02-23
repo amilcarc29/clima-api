@@ -1,6 +1,5 @@
 package com.clima.ClimaAPI.models;
 
-
 import org.bson.types.ObjectId;
 import org.json.JSONObject;
 import org.springframework.data.annotation.Id;

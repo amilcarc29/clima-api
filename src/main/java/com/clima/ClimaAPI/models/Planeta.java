@@ -4,14 +4,14 @@ import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 
 public class Planeta {
-	
+
 	@Id
 	public ObjectId _id;
 	public String nombre;
 	public float velocidadAngular;
 	public float distanciaAlSol;
 	public String sentido;
-	
+
 	public Planeta() {}
 
 	public Planeta(ObjectId _id, String nombre, float velocidadAngular, float distanciaAlSol, String sentido) {
@@ -22,7 +22,7 @@ public class Planeta {
 		this.distanciaAlSol = distanciaAlSol;
 		this.sentido = sentido;
 	}
-	
+
 	public Planeta(String nombre, float velocidadAngular, float distanciaAlSol, String sentido) {
 		super();
 		this.nombre = nombre;

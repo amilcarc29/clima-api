@@ -8,7 +8,7 @@ import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
 public interface ClimaRepository extends MongoRepository<Clima, String> {
-  Clima findBy_id(ObjectId _id);
-  Clima findByDias(int dias);
-  List<Clima> findByPronostico(String pronostico);
+	Clima findBy_id(ObjectId _id);
+	Clima findByDias(int dias);
+	List<Clima> findByPronostico(String pronostico);
 }
